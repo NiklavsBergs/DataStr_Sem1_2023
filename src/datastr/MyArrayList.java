@@ -29,7 +29,7 @@ public class MyArrayList {
 		return elementCounter;
 	}
 	
-	private char[] increaseSize(char[] elements) {
+	private void increaseSize() {
 		int newSize;
 		char[] newElements;
 		if (elementCounter > 100) {
@@ -46,34 +46,43 @@ public class MyArrayList {
 		
 		elements = newElements;
 		arraySize = newSize;
-		
-		return elements;
 	}
 	
-	public char[] addElementEnd(char[] elements, char newElement) {
+	public void add(char newElement) {
+		if (isFull()) {
+			increaseSize();
+		}
 		elements[elementCounter] = newElement;
 		elementCounter++;
 		
-		return elements;
 	}
 	
-	public char[] addElementIndex(char[] elements, char newElement, int index) {
-		if(elementCounter == 0) {
-			elements[0] = newElement;
-			elementCounter++;
-		}
-		else if ((0 <= index) && (index <= elementCounter)) {
-			for (int i = elementCounter; i > index; i--) {
-				elements[i] = elements[i-1];
+	public void add(char newElement, int index) throws Exception {
+	
+		if ((0 <= index) && (index <= elementCounter)) {
+			
+			if (isFull()) {
+				increaseSize();
 			}
-			elements[index] = newElement;
-			elementCounter++;
+			
+			if (index == elementCounter) {
+				add(newElement);
+			}
+			else {
+				for (int i = elementCounter; i > index; i--) {
+					elements[i] = elements[i-1];
+				}
+				elements[index] = newElement;
+				elementCounter++;
+			}
+		}
+		else {
+			throw (new Exception("Wrong index"));
 		}
 		
-		return elements;
 	}
 	
-	public char[] deleteElementIndex(char[] elements, int index) {
+	public void deleteIndex(int index) throws Exception {
 		
 		if ((0 <= index) && (index < elementCounter)) {
 			for (int i = index; i < elementCounter; i++) {
@@ -82,9 +91,42 @@ public class MyArrayList {
 			
 			elementCounter--;
 		}
+		else {
+			throw (new Exception("Wrong index"));
+		}
 		
-		return elements;
 	}
+	
+	public char getIndex(char[] elements, int index) {
+		if((index >= 0) && (index < elementCounter)) {
+			return elements[index];
+		}
+		else {
+			return ' ';
+		}
+	}
+	
+	public int findElement(char[] elements, char element) {
+		if (elementCounter > 0) {
+			for (int i = 0; i < elementCounter; i++) {
+				if (elements[i] == element) {
+					return i;
+				}
+			}
+		}
+		return -1;
+	}
+	
+	public int getNext(int index) {
+		if((index >= 0) && (index < elementCounter-1)) {
+			return elements[index+1];
+		}
+		else {
+			return ' ';
+		}
+	}
+	
+	
 }
 	
 
