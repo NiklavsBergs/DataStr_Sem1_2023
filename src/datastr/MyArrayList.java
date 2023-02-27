@@ -84,7 +84,7 @@ public class MyArrayList {
 		
 	}
 	
-	public void deleteIndex(int index) throws Exception {
+	public void delete(int index) throws Exception {
 		if (isEmpty()) {
 			throw (new Exception("Already empty"));
 		}
@@ -93,6 +93,8 @@ public class MyArrayList {
 				for (int i = index; i < elementCounter; i++) {
 					elements[i] = elements[i+1];
 				}
+				
+				elements[elementCounter-1] = 0;
 				
 				elementCounter--;
 			}
@@ -150,7 +152,7 @@ public class MyArrayList {
 	public void print() {
 		
 		System.out.print("[ ");
-		for (int i = 0; i < elementCounter - 2; i++) {
+		for (int i = 0; i < elementCounter - 1; i++) {
 			System.out.print(elements[i] + ", ");
 		}
 		System.out.print(elements[elementCounter - 1]);
@@ -159,7 +161,7 @@ public class MyArrayList {
 	}
 	
 	public void clear() {
-		elements = new char[arraySize];
+		elements = new char[DEFAULT_ARRAY_SIZE];
 		elementCounter = 0;
 	}
 	
