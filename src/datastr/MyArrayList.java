@@ -29,25 +29,62 @@ public class MyArrayList {
 		return elementCounter;
 	}
 	
-	public char[] doubleSize() {
+	private char[] increaseSize(char[] elements) {
 		int newSize;
-		char[] newArray;
+		char[] newElements;
 		if (elementCounter > 100) {
 			newSize = (int) (arraySize * 1.5);
 		}
 		else {
 			newSize = arraySize * 2;
 		}
-		newArray = new char[newSize];
+		newElements = new char[newSize];
 		
 		for (int i = 0; i < elementCounter; i++) {
-			newArray[i] = elements[i];
+			newElements[i] = elements[i];
 		}
 		
-		return newArray;
+		elements = newElements;
+		arraySize = newSize;
+		
+		return elements;
 	}
 	
-	public char[] addElementEnd{
+	public char[] addElementEnd(char[] elements, char newElement) {
+		elements[elementCounter] = newElement;
+		elementCounter++;
 		
+		return elements;
+	}
+	
+	public char[] addElementIndex(char[] elements, char newElement, int index) {
+		if(elementCounter == 0) {
+			elements[0] = newElement;
+			elementCounter++;
+		}
+		else if ((0 <= index) && (index <= elementCounter)) {
+			for (int i = elementCounter; i > index; i--) {
+				elements[i] = elements[i-1];
+			}
+			elements[index] = newElement;
+			elementCounter++;
+		}
+		
+		return elements;
+	}
+	
+	public char[] deleteElementIndex(char[] elements, int index) {
+		
+		if ((0 <= index) && (index < elementCounter)) {
+			for (int i = index; i < elementCounter; i++) {
+				elements[i] = elements[i+1];
+			}
+			
+			elementCounter--;
+		}
+		
+		return elements;
 	}
 }
+	
+
