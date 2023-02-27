@@ -150,19 +150,26 @@ public class MyArrayList {
 	}
 	
 	public void print() {
-		
-		System.out.print("[ ");
-		for (int i = 0; i < elementCounter - 1; i++) {
-			System.out.print(elements[i] + ", ");
+		if (isEmpty()) {
+			System.out.print("[ ]");
 		}
-		System.out.print(elements[elementCounter - 1]);
-		System.out.print(" ]");
+		else {
+			System.out.print("[ ");
+			for (int i = 0; i < elementCounter - 1; i++) {
+				System.out.print(elements[i] + ", ");
+			}
+			System.out.print(elements[elementCounter - 1]);
+			System.out.print(" ]");
+			System.out.println();
+		}
+		
 		
 	}
 	
 	public void clear() {
-		elements = new char[DEFAULT_ARRAY_SIZE];
+		arraySize = DEFAULT_ARRAY_SIZE;
 		elementCounter = 0;
+		elements = new char[arraySize];
 	}
 	
 }

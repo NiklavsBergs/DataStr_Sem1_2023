@@ -24,6 +24,10 @@ public class mainService {
 			}
 			
 			vards.print();
+			
+			vards.clear();
+			
+			vards.print();
 		}
 
 }
