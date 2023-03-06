@@ -53,9 +53,9 @@ public class mainService {
 				
 				System.out.println(vards.getIndex(2));
 				
-				System.out.println(vards.getNext('a'));
+				//System.out.println(vards.getNext('a'));
 				
-				System.out.println(Arrays.toString(vards.sort(SortingType.ASC)));
+				System.out.println(vards.sort(SortingType.ASC));
 				
 				vards.print();
 				vards.delete(1);

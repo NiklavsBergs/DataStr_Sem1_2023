@@ -187,7 +187,7 @@ public class MyArrayList<T> {
 				for(int j = 0; j < elementCounter - 1; j++) {
 					//if (sortedArray[j] > sortedArray[j+1]) 
 						
-					if ( ((Comparable)(sortedArray[j])).compareTo(sortedArray[j+1]) == sortVar){
+					if ( ((Comparable)sortedArray[j]).compareTo(sortedArray[j+1]) == sortVar){
 						temp = sortedArray[j];
 						sortedArray[j] = sortedArray[j+1];
 						sortedArray[j+1] = temp;
