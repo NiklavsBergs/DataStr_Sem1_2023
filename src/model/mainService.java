@@ -4,6 +4,8 @@ import datastr.MyArrayList;
 import datastr.SortingType;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.Scanner;
 
 public class mainService {
 
@@ -11,12 +13,11 @@ public class mainService {
 		
 			MyArrayList vards = new MyArrayList();
 			
-			MyArrayList test = new MyArrayList();
 			
-			FileReader fr = new FileReader("G:\\PROFILE\\Desktop\\test.txt");
+			//FileReader fr = new FileReader("G:\\PROFILE\\Desktop\\test.txt");
 			
 			try {
-				
+				/*
 				int i = 0;
 				
 				char newEl = ' ';
@@ -29,9 +30,15 @@ public class mainService {
 						test.add((char)i);;
 					}
 		            
-				}
+				} */
+				MyArrayList test = getElementsFromFile("resources\\numbers.txt");
 				
 				test.print();
+				System.out.println();
+				test.add('a');
+				test.delete(1);
+				test.print();
+				System.out.println(Arrays.toString(test.sort(SortingType.ASC)));
 				System.out.println();
 				boolean a = vards.isEmpty();
 				
@@ -65,6 +72,27 @@ public class mainService {
 			
 
 		}
+	
+	public static MyArrayList getElementsFromFile(String path) throws FileNotFoundException {
+		File myFile = new File(path);
+		
+		FileInputStream myInputStream = new FileInputStream(myFile);
+		
+		Scanner myScanner = new Scanner(myInputStream);
+		
+		MyArrayList listFromFile = new MyArrayList();
+		
+		while(myScanner.hasNextLine()) {
+			String line = myScanner.nextLine();
+			char element = line.charAt(0);
+			listFromFile.add(element);
+		}
+		
+		myScanner.close();
+		
+		return listFromFile;
+		
+	}
 
 }
 
