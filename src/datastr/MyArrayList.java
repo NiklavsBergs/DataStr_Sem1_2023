@@ -105,7 +105,7 @@ public class MyArrayList {
 		
 	}
 	
-	public char getIndex(char[] elements, int index) {
+	public char getIndex(int index) {
 		if((index >= 0) && (index < elementCounter)) {
 			return elements[index];
 		}
@@ -185,7 +185,7 @@ public class MyArrayList {
 						}
 					}
 				}
-				return sortedArray;
+				
 			}
 			else if(type == SortingType.DESC) {
 				for(int i = 0; i < elementCounter; i++) {
@@ -197,12 +197,13 @@ public class MyArrayList {
 						}
 					}
 				}
-				return sortedArray;
+				
 			}
 			else {
 				throw (new Exception("Wrong sorting type"));
 			}
 			
+			return sortedArray;
 		}
 	
 	}
