@@ -114,39 +114,97 @@ public class MyArrayList {
 		}
 	}
 	
-	public int findElement(char element) {
+	public boolean findElement(char element) {
 		if (elementCounter > 0) {
 			for (int i = 0; i < elementCounter; i++) {
 				if (elements[i] == element) {
-					return i;
+					return true;
 				}
 			}
 		}
-		return -1;
+		return false;
 	}
 	
-	public int getNext(char element) {
-		int index = findElement(element);
+	public char[] getNext(char element) throws Exception {
 		
-		if((index >= 0) && (index < elementCounter-1)) {
-			return elements[index+1];
+		if (findElement(element)) {
+			int elementCount = 0;
+			
+			for (int i = 0; i < elementCounter; i++) {
+				if (element == elements[i]) {
+					elementCount++;
+				}
+			}
+			
+			if(elements[elementCounter-1] == element) {
+				elementCount--;
+			}
+			
+			char[] nextElements = new char[elementCount];
+			
+			int index = 0;
+			
+			for (int i = 0; i < elementCounter-1; i++) {
+				if (element == elements[i]) {
+					nextElements[index] = elements[i+1];
+					index++;
+				}
+			}
+			
+			return nextElements;
+			
 		}
 		else {
-			return ' ';
+			throw(new Exception("Input element not found"));
 		}
 	}
 	
-	public void sort() {
-		char temp = ' ';
-		for(int i = 0; i < elementCounter; i++) {
-			for(int j = 0; j < elementCounter - 1; j++) {
-				if (elements[j] > elements[j+1]) {
-					temp = elements[j];
-					elements[j] = elements[j+1];
-					elements[j+1] = temp;
-				}
-			}
+	
+	public char[] sort(SortingType type) throws Exception{
+		
+		if(isEmpty()) {
+			throw (new Exception("Already empty"));
 		}
+		else {
+			
+			char[] sortedArray = new char[elementCounter];
+			
+			for (int i = 0; i < elementCounter; i++) {
+				sortedArray[i] = elements[i];
+			}
+			
+			char temp = ' ';
+			
+			if(type == SortingType.ASC) {
+				for(int i = 0; i < elementCounter; i++) {
+					for(int j = 0; j < elementCounter - 1; j++) {
+						if (sortedArray[j] > sortedArray[j+1]) {
+							temp = sortedArray[j];
+							sortedArray[j] = sortedArray[j+1];
+							sortedArray[j+1] = temp;
+						}
+					}
+				}
+				return sortedArray;
+			}
+			else if(type == SortingType.DESC) {
+				for(int i = 0; i < elementCounter; i++) {
+					for(int j = 0; j < elementCounter - 1; j++) {
+						if (sortedArray[j] < sortedArray[j+1]) {
+							temp = sortedArray[j];
+							sortedArray[j] = sortedArray[j+1];
+							sortedArray[j+1] = temp;
+						}
+					}
+				}
+				return sortedArray;
+			}
+			else {
+				throw (new Exception("Wrong sorting type"));
+			}
+			
+		}
+	
 	}
 	
 	public void print() {
